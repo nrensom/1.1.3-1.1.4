@@ -20,6 +20,7 @@ public class Main {
         us.saveUser("Oleg", "Tinkoff", (byte) 54);
 
         List <User> list = us.getAllUsers();
+        list.forEach(System.out::println);
         us.removeUserById(4);
         us.cleanUsersTable();
         us.dropUsersTable();
