@@ -10,6 +10,7 @@ import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
     private final SessionFactory sessionFactory = Util.getSessionFactory();
+
     public UserDaoHibernateImpl() {
     }
 
@@ -21,7 +22,7 @@ public class UserDaoHibernateImpl implements UserDao {
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             session
-                    .createSQLQuery("CREATE TABLE IF NOT EXISTS USERS (ID BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, NAME VARCHAR(30) NOT NULL , LASTNAME VARCHAR(30), AGE TINYINT)")
+                    .createSQLQuery("CREATE TABLE IF NOT EXISTS USERS (id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, name VARCHAR(30) NOT NULL , lastname VARCHAR(30), age TINYINT)")
                     .addEntity(User.class)
                     .executeUpdate();
             transaction.commit();

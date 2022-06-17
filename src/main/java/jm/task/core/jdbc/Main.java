@@ -6,6 +6,8 @@ import jm.task.core.jdbc.dao.UserDao;
 import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
+import jm.task.core.jdbc.util.Util;
+import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -19,11 +21,11 @@ public class Main {
         us.saveUser("Harry", "Potter", (byte) 17);
         us.saveUser("Oleg", "Tinkoff", (byte) 54);
 
-        List <User> list = us.getAllUsers();
+
+        List<User> list = us.getAllUsers();
         list.forEach(System.out::println);
         us.removeUserById(4);
         us.cleanUsersTable();
         us.dropUsersTable();
-
     }
 }

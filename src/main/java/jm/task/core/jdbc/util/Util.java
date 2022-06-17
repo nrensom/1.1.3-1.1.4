@@ -16,9 +16,13 @@ import java.util.Properties;
 public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/test";
     private static final String LOGIN = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "RensomN12G4+";
     private static Connection connection;
     private static SessionFactory sessionFactory = null;
+
+    private Util() {
+
+    }
 
 
     public static Connection getConnection() {
@@ -30,7 +34,7 @@ public class Util {
         return connection;
     }
 
-    public static SessionFactory getSessionFactory() {
+    public static synchronized SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
@@ -42,7 +46,7 @@ public class Util {
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                settings.put(Environment.HBM2DDL_AUTO, "validate");
+                settings.put(Environment.HBM2DDL_AUTO, "update");
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(User.class);
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
