@@ -20,6 +20,15 @@ public class Util {
     private static Connection connection;
     private static SessionFactory sessionFactory = null;
 
+    private static Util util;
+
+    public static synchronized Util getUtil() {
+        if(util == null) {
+            util = new Util();
+        }
+        return util;
+    }
+
     private Util() {
 
     }
@@ -34,7 +43,7 @@ public class Util {
         return connection;
     }
 
-    public static synchronized SessionFactory getSessionFactory() {
+    public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
