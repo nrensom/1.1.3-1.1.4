@@ -20,13 +20,13 @@ public class Util {
     private static Connection connection;
     private static SessionFactory sessionFactory = null;
 
-    private static Util util;
+    private static Util INSTANCE;
 
-    public static synchronized Util getUtil() {
-        if(util == null) {
-            util = new Util();
+    public static synchronized Util getINSTANCE() {
+        if(INSTANCE == null) {
+            INSTANCE = new Util();
         }
-        return util;
+        return INSTANCE;
     }
 
     private Util() {
